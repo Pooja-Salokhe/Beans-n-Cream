@@ -1,0 +1,108 @@
+
+.dataTables_wrapper {
+    .table{
+        &.table-bordered{
+            border:1px solid $blueBorder;
+            border-collapse:collapse !important;
+            border-radius:1.2rem;
+            border-style: hidden;
+            box-shadow: 0 0 0 1px $blueBorder;
+            background: $primary;
+            thead{
+                th{
+                    border-top:none;
+                    border-color: $blueBorder;
+                    border-bottom: 1px solid $blueBorder;
+                    padding:1.2rem;
+                }
+            }
+            tbody{
+                td{
+                    border-top:none;
+                    border-color: $blueBorder;
+                    padding:1.2rem;
+                    font-weight: normal;
+                    
+                }
+            }
+        }
+        &.dataTable{
+            margin: 0 !important;
+        }
+    }
+    .dataTables_paginate{
+        margin-top: 2rem !important;
+        display:flex;
+        justify-content: center;
+        width: auto;
+        .pagination{
+            border:1px solid $blueBorder;
+            border-radius:5rem;
+            margin:0 !important;
+            li{
+                padding:1.5rem;
+                .page-link{
+                    background: transparent;
+                    padding:0;
+                    border:none;
+                    border-radius:100%;
+                    min-width:3rem;
+                    height: 3rem;
+                    line-height: 3.5rem;
+                    text-align: center;
+                }
+                &.active,
+                &:hover{
+                    .page-link{
+                        color:$navy-blue;
+                        background: $secondary;
+                        font-weight: bold;
+                    }
+                }
+                &.first,
+                &.previous,
+                &.next,
+                &.last{
+                    padding:1.5rem 2rem;
+                    border-right:1px solid $blueBorder;
+                    .page-link{
+                        background: transparent;
+                        font-weight: normal;
+                        color:$white;
+                        &:hover{
+                           background: transparent;
+                           font-weight: normal;
+                           color:$white;
+                        }
+                    }
+                }
+                &.next,
+                &.last{
+                   border-left:1px solid $blueBorder;
+                   border-right:0 solid $blueBorder;
+                }
+                &.disabled{
+                   .page-link{
+                       background: transparent;
+                       color: $blueBorder;
+                   }
+                }
+            }
+        }
+    }
+    .dataTables_length{
+        .form-control{
+            background: transparent;
+            padding:0 0 0 0.5rem;
+            color: $white;
+            width: auto;
+            option{
+                background: $inputbg;
+                border:none;
+                color: $white;
+                text-shadow: 0 1px 0 rgba($inputbg, 1);
+            }
+        }
+    }
+
+}

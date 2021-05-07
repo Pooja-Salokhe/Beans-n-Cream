@@ -1,0 +1,43 @@
+
+.modal{
+    .modal-dialog{
+        max-width:57rem;
+        width:95%;
+        @include breakpoint(mobile){
+            max-width:95%;
+        }
+    }
+    .modal-content{
+        background: $primary;
+        border:1px solid $border-color;
+        border-radius:3rem;
+        position: relative;
+        padding: 3rem;
+        width:110%;
+        @include breakpoint(mobile){
+            padding: 2rem;
+            border-radius: 2rem;
+        }
+    }
+    .close{
+        position: absolute;
+        right: -20px;
+        top: -20px;
+        opacity: 1 !important;
+        @include breakpoint(mobile){
+            width: 3rem;
+            right: -10px;
+            top: -10px;
+        }
+    }
+    .modal-title{
+        font-size:3.5rem;
+        font-weight: bold;
+        text-align: center;
+        margin:0;
+        margin-bottom:2rem;
+    }
+}
+.modal-backdrop{
+    background-color: $white;
+}

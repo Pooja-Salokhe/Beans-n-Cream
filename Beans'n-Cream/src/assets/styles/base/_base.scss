@@ -1,0 +1,347 @@
+html {
+    font-size: 10px;
+    @media only screen and (max-width: 1200px) {
+        font-size: 9px;
+    }
+}
+
+* {
+    text-rendering: optimizeLegibility !important;
+    -webkit-font-smoothing: antialiased !important;
+    -webkit-font-feature-settings: "lnum";
+    -moz-font-feature-settings: "lnum";
+    font-feature-settings: "lnum";
+
+}
+
+*,
+*:focus{
+    outline: none;
+    border:none;
+}
+button{
+    &:focus{
+        outline: none;
+    }
+}
+body {
+    font-size: 1.3rem;
+    font-family: $basefont;
+    color: $white;
+    background: url(./../../images/login-bg.jpg) center top no-repeat;
+    background-size: cover;
+    width:100%;
+    min-height:100vh;
+    @include breakpoint(xtralarge) {
+        font-size: 1.4rem;
+    }
+}
+
+.container {
+    @include media-breakpoint-up(lg) {
+        max-width: 94%;
+    }
+    @media (min-width:1660px) {
+        max-width: 1600px;
+    }
+    @include media-breakpoint-down(md) {
+        max-width: 100%;
+    }
+    @media screen and (min-width:1024px) and (max-width:1200px) {
+        max-width: 94%;
+    }
+}
+
+.container-fluid {
+    max-width: 1920px;
+    margin: 0 auto;
+    padding: 0 3rem;
+    @include breakpoint(xtralarge) {
+        padding: 0 4rem;
+    }
+    @include media-breakpoint-down(md) {
+        max-width: 100%;
+        padding: 0 3%;
+    }
+}
+
+img {
+    &:hover,
+    &:focus {
+        outline: none;
+    }
+}
+
+a {
+    @include transition;
+    color: rgba($white, 1);
+    cursor: pointer;
+    &:visited {
+        color: rgba($white, 1);
+    }
+    &:hover,
+    &:focus {
+        outline: none;
+        text-decoration: none;
+        color: rgba($white, 0.8);
+    }
+}
+
+ul,
+ol {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+p {
+    padding: 1.4rem 0;
+    margin: 0px;
+    color: $white;
+    letter-spacing: 0.84px;
+    font: normal 1.3rem/1.5 $basefont;
+    @include breakpoint(xtralarge) {
+        font: normal 1.4rem/1.5 $basefont;
+    }
+}
+
+.bullet-list {
+    color: $white;
+    list-style: disc;
+    padding: 1.4rem 0;
+    padding-left: 2rem;
+    list-style-position: outside;
+    letter-spacing: 0.84px;
+    font: normal 1.3rem/1.5 $basefont;
+    @include breakpoint(xtralarge) {
+        font: normal 1.4rem/1.5 $basefont;
+    }
+
+    li {
+        margin-bottom: 1rem;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+}
+
+.numbers-list {
+    color: $white;
+    list-style: decimal;
+    list-style-position: inside;
+    padding: 1.4rem 0;
+    letter-spacing: 0.84px;
+    font: normal 1.3rem/1.5 $basefont;
+    @include breakpoint(xtralarge) {
+        font: normal 1.4rem/1.5 $basefont;
+    }
+    li {
+        margin-bottom: 1rem;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+}
+
+.error {
+    color: $red;
+}
+
+.success {
+    color: $green;
+}
+.grey-bg {
+    background-color: $info;
+}
+
+.mobile-only {
+    display: none;
+    @include media-breakpoint-down(md) {
+        display: block !important;
+    }
+}
+
+.desktop-only {
+    display: block;
+    @include media-breakpoint-down(md) {
+        display: none !important;
+    }
+}
+
+.ipad-only {
+    display: none;
+    @include breakpoint(iPad) {
+        display: block !important;
+    }
+}
+.primary-color {
+    color: $primary;
+}
+.alert-success {
+    color: $success;
+    background-color: rgba($success, 0.5);
+    border-color: rgba($success, 0.5);
+}
+
+.call-icon {
+    font-family: '#{$icomoon-font-family}' !important;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.img-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    @extend .grey-bg;
+    img {
+        flex: 0 0 auto;
+        max-height: 100%;
+        max-width: 100%;
+    }
+}
+
+// .swiper-button-next {
+//     width: auto;
+//     height: auto;
+//     margin: auto;
+
+//     &:after {
+//         font-size: 2rem;
+//         color: $dark-grey;
+//         font-family: $icomoon-font-family;
+//         content: "\e925";
+//     }
+// }
+
+// .swiper-button-prev {
+//     width: auto;
+//     height: auto;
+//     margin: auto;
+//     &:after {
+//         font-size: 2rem;
+//         color: $dark-grey;
+//         font-family: $icomoon-font-family;
+//         content: "\e926";
+//     }
+// }
+
+
+.section-title {
+    font-size: 4.2rem;
+    color: $dark-grey;
+    margin-bottom: 2.1rem;
+    font-family:$basefont;
+    font-weight:700;
+    letter-spacing: 1.88px;
+    position: relative;
+
+    @include breakpoint(xtralarge) {
+        font-size: 6rem;
+        margin-bottom: 3rem;
+    }
+
+    @include media-breakpoint-down(md) {
+        font-size: 3rem;
+    }
+}
+
+section {
+    max-width: 1920px;
+    margin: 0 auto;
+}
+
+.video-js {
+    max-height: 100%;
+    width: 100% !important;
+    position: relative;
+    background: transparent;
+    height: 100% !important;
+
+    .vjs-poster {
+        &:before {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            left: 0;
+            top: 0;
+            //content: '';
+            background: rgba($dark-grey, 0.5);
+            z-index: 0;
+        }
+    }
+
+    .vjs-big-play-button {
+        width: 5rem;
+        height: 5rem;
+        border-radius: 5rem;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        margin: auto;
+        z-index: 10;
+        background-color: transparent;
+        border: 1px solid $white;
+        height: 5.5rem;
+        width: 5.5rem;
+        span {
+            line-height: 5.5rem;
+            @include breakpoint(xtralarge) {
+                line-height: 8rem;
+            }
+            &:before {
+                color: rgba($white, 1);
+            }
+        }
+
+        @include breakpoint(xtralarge) {
+            height: 8rem;
+            width: 8rem;
+        }
+    }
+}
+
+// Card 
+.card{
+    background: $primary;
+    border:1px solid $border-color;
+    border-radius:1.2rem;
+    height: 100%;
+    padding: 2rem;
+}
+
+
+// Legend 
+.legend-card{
+    background: $primary;
+    border:1px solid $border-color;
+    border-radius:3rem;
+    position: relative;
+    padding:8rem 4rem;
+    padding-top: 0;
+    legend{
+        font-size:2rem;
+        font-weight: bold;
+        color:$navy-blue;
+        background:$secondary;
+        padding:1.5rem 3rem;
+        border-radius:1.2rem;
+        margin-bottom:2rem;
+        display: inline-block;
+        width: auto;
+        transform: translate(0, -50%);
+        @include breakpoint(mobile){
+            font-size:1.6rem;
+        }
+    }
+}
+

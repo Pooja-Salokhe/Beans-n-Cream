@@ -1,0 +1,140 @@
+
+
+ 
+ .btn{
+     border-radius:4rem;
+     color:$dark-grey;
+     font-size:1.6rem;
+     text-transform: capitalize;
+     letter-spacing: 0.19px;
+     @include transition;
+     font-family: $basefont;
+     padding:1.2rem 2.5rem;
+     position: relative;
+     font-weight: 700;
+     border:none;
+     background: $secondary;
+     -webkit-box-shadow: -1px 4px 0px -1px rgba($orange,1);
+     -moz-box-shadow: -1px 4px 0px -1px rgba($orange,1);
+     box-shadow: -1px 4px 0px -1px rgba($orange,1);
+     @include breakpoint(xtralarge){
+         font-size:1.8rem;
+         padding:1.4rem 3rem;
+     }
+     @include breakpoint(tabs){
+         padding:1rem 2rem;
+         font-size:1.3rem;
+     }
+     &:before{
+         width: 1rem;
+         height: 0.5rem;
+         background: $white;
+         content: "";
+         position: absolute;
+         z-index: 1;
+         left: 11px;
+         top: 7px;
+         border-radius: 100%;
+         transform: rotate(-45deg);
+         @include breakpoint(tabs){
+             width:0.8rem;
+             height:0.4rem;
+         }
+     }
+     &:after{
+         width: 1.4rem;
+         height: 0.8rem;
+         background: rgba($white,0.15);
+         content: "";
+         z-index: 0;
+         position: absolute;
+         left: 9px;
+         top: 5px;
+         border-radius: 100%;
+         transform: rotate(-45deg);
+         @include breakpoint(tabs){
+             width:1.2rem;
+             height:0.6rem;
+         }
+     }
+     &.btn-primary {
+         background-color: $secondary;
+         color: $dark-grey;
+         &:hover {
+             background: $blue;
+             border-color:$blue;
+             color: $white;
+             -webkit-box-shadow: -1px 4px 0px -1px rgba($dark-grey,1);
+             -moz-box-shadow: -1px 4px 0px -1px rgba($dark-grey,1);
+             box-shadow: -1px 4px 0px -1px rgba($dark-grey,1);
+         }
+     }
+     &.btn-secondary {
+         background: $azure;
+         border-color:$azure;
+         color: $dark-grey;
+         box-shadow: none;
+         &:hover {
+             background: $secondary;
+             border-color:$secondary;
+             color:$dark-grey;
+             box-shadow: none;
+         }
+     }
+     &.btn-green {
+         background: $success;
+         border-color:$success;
+         color: $dark-grey;
+         box-shadow: none;
+         &:hover {
+             background: $secondary;
+             border-color:$secondary;
+             color:$dark-grey;
+             box-shadow: none;
+         }
+     }
+     &.btn-danger{
+         background: $alert;
+         border-color: $alert;
+         color: $navy-blue;
+         box-shadow: none;
+         &:hover {
+            background: $secondary;
+            border-color:$secondary;
+            color:$dark-grey;
+            box-shadow: none;
+        }
+     }
+     &.icon-btn{
+        fa-icon{
+            margin-right: 1rem;
+            display: inline-block;
+        }
+        .icon{
+            width:2rem;
+            height:2rem;
+            margin-right: 1rem;
+            display: inline-block;
+            img{
+                max-width: 100%;
+                max-height:100%;
+            }
+        }
+     }
+ }
+
+.profile-modal{
+    .profile-btns{
+        app-button{
+            width:calc((100% - 3rem) / 3);
+            margin-right:1.5rem;
+            &:last-child{
+                margin-right: 0;
+            }
+            .btn{
+                display: block;
+                width:100%;
+            }
+        }    
+    }
+} 

@@ -1,0 +1,212 @@
+<header class="header">
+  <div class="header-top">
+    <div class="container">
+      <div class="logo">
+        <img src="./assets/images/logo.png" alt="" class="img-fluid" />
+      </div>
+      <h1 class="logo-title">Beans'n Cream</h1>
+    </div>
+  </div>
+  <div class="bottom-header">
+    <div class="container">
+      <ul class="bottom-nav">
+        <li>
+          <a (click)="showDiv.menu = true; showDiv.order = false; showDiv.user = false">
+            <fa-icon [icon]="Home"></fa-icon>
+            Menu
+          </a>
+        </li>
+        <li>
+          <a (click)="showDiv.order = true; showDiv.user = false; showDiv.menu = false">
+            <fa-icon [icon]="Ingredients"></fa-icon>
+            View Orders
+          </a>
+        </li>
+        <li>
+          <a (click)="showDiv.user = true; showDiv.order = false; showDiv.menu = false">
+            <fa-icon [icon]="Roster"></fa-icon>
+            View User Payment
+          </a>
+        </li>
+      </ul>
+      <div class="more-actions desktop-only">
+        <ul class="bottom-nav">
+          <li>
+            <a>
+              <fa-icon [icon]="Ingredients"></fa-icon>
+              Total Orders : <span> 100 </span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="order-list" *ngIf="showDiv.order">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-3 col-md-4 col-sm-6" *ngFor="let item of productOrderDetails | sortBy: 'asc':'productName'">
+        <div class="orderItem card">
+          <div class="orderItem__image">
+            <img src="./assets/images/logo.png" alt="" class="img-fluid" />
+          </div>
+          <div class="orderItem__info">
+            <h2 class="orderItem__name">
+              {{ item.productName | uppercase }}
+            </h2>
+
+            <ul class="orderItem__instruction">
+              <li>
+                <fa-icon [icon]="Ingredients"></fa-icon>
+                <span>Total Orders : {{ item.productOrderCount }}</span>
+              </li>
+            </ul>
+            <ul class="orderItem__links">
+              <li>
+                <a (click)="openModal('viewDetails', item.productID)">View Details <fa-icon [icon]="RightArrow"></fa-icon></a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="userList" *ngIf="showDiv.user">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-3 col-md-4 col-sm-6" *ngFor="let item of userOrderDetails | sortBy: 'asc':'userName'">
+        <div class="userItem">
+          <div class="userItem__photo">
+            <img src="./assets/images/user-icon.svg" />
+          </div>
+          <h3 class="userItem__name">{{ item.userName | uppercase }}</h3>
+          <hr />
+          <ul class="userItem__instruction">
+            <li>
+              <label>Cost To Pay : </label>
+              <span> {{ item.costToPay | currency: 'EUR' }}</span>
+            </li>
+            <li>
+              <label>Total Payment : </label>
+              <span> {{ item.totalPayment | currency: 'EUR' }}</span>
+            </li>
+          </ul>
+          <div class="info">
+            <span class="info-icon">
+              <fa-icon [icon]="exclamationTriangle"></fa-icon>
+            </span>
+            <p>Owed Amount : {{ item.owedAmount | currency: 'EUR' }}</p>
+          </div>
+          <a (click)="openModal('viewUserDetails', item.id)">View Details  <fa-icon [icon]="RightArrow"></fa-icon></a>
+
+          <hr />
+          <span *ngIf="item.owedAmount < 0">Note: Negative amount indicates user has paid extra.</span>
+          <span *ngIf="item.owedAmount > 0">Note: Amount to be paid by user.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="explore-orders" *ngIf="showDiv.menu">
+  <div class="container-fluid pr-0">
+    <div class="row">
+      <div class="col-md-12">
+        <h2 class="page-title">Find your next delicious coffee</h2>
+        <div class="explore-search">
+          <fa-icon [icon]="SearchIcon"></fa-icon>
+          <input class="form-control" type="text" placeholder="Find your next delicious coffee" [(ngModel)]="term" />
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="order-list">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-3 col-md-4 col-sm-6" *ngFor="let item of productOrderDetails | sortBy: 'asc':'productName' | filter: term">
+          <div class="orderItem card">
+            <div class="orderItem__image">
+              <img src="./assets/images/logo.png" alt="" class="img-fluid" />
+            </div>
+            <div class="orderItem__info">
+              <h2 class="orderItem__name">
+                {{ item.productName | uppercase }}
+              </h2>
+
+              <div class="featuredList">
+                <div class="featuredList__item" *ngFor="let index of item.productDetails">
+                  <div class="itemPrice">{{ index.size }} {{ index.cost | currency: 'EUR' }}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Order Details  Modal -->
+<ng-template #viewDetails let-modal id="viewDetails">
+  <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+    <img src="./assets/images/close.png" alt="" class="img-fluid" />
+  </button>
+  <div class="modal-body profile-modal">
+    <div class="profile-header">
+      <h2>{{ filterOrder.productName | titlecase }}</h2>
+    </div>
+    <hr />
+    <div class="profile-info">
+      <table datatable [dtOptions]="dtOptions" class="row-border hover">
+        <thead>
+          <tr>
+            <th>User Name</th>
+            <th>Beverage Size</th>
+            <th>Beverage Price</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let index of filterOrder.productOrderDetails">
+            <td class="user-table">{{ index.user | titlecase }}</td>
+            <td class="user-table">{{ index.size | titlecase }}</td>
+            <td class="user-table">{{ index.cost | currency: 'EUR' }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</ng-template>
+
+<!-- Modal for view the respective user Order Details  Modal -->
+<ng-template #viewUserDetails let-modal id="viewUserDetails">
+  <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+    <img src="./assets/images/close.png" alt="" class="img-fluid" />
+  </button>
+  <div class="modal-body profile-modal">
+    <div class="profile-header">
+      <h2>{{ filterOrderByUserName.userName | titlecase }}</h2>
+    </div>
+    <hr />
+    <div class="profile-info">
+      <table datatable [dtOptions]="dtOptions" class="row-border hover">
+        <thead>
+          <tr>
+            <th>Beverage Type</th>
+            <th>Beverage Size</th>
+            <th>Beverage Price</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let index of filterOrderByUserName.details">
+            <td class="user-table">{{ index.productName | titlecase }}</td>
+            <td class="user-table">{{ index.productSize | titlecase }}</td>
+            <td class="user-table">{{ index.productPrice | currency: 'EUR' }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</ng-template>
