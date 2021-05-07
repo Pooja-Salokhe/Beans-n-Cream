@@ -36,18 +36,19 @@ export class CoffeeOrderComponent implements OnInit {
   userIcon = faUsers;
   Roster = faUser;
   SearchIcon = faSearch;
-  priceOfEachBeverage: any[];
-  paymentMadeByUser: any[];
-  orders: any = [];
-  users: Users[] = [];
-  products: Products[] = [];
-  productSizeList: ProductSize[] = [];
-  productPrice: ProductPrice[] = [];
-  TotalPaymentMadeByUser: PaymentMadeByUser[] = [];
-  usersOrders: UsersOrders[] = [];
+
+  priceOfEachBeverage: any[]; // store  price.json data
+  paymentMadeByUser: any[]; // store  payment.json data
+  orders: any = []; // store orders.json data
+  users: Users[] = []; // store the user's of the application
+  products: Products[] = []; // store the products  of the application
+  productSizeList: ProductSize[] = []; // store the product's different size
+  productPrice: ProductPrice[] = []; // store the products ,it's size and price
+  TotalPaymentMadeByUser: PaymentMadeByUser[] = []; // store the total payment made by each user
+  usersOrders: UsersOrders[] = []; // store the each user orders
   closeResult = '';
-  filterOrder: any = [];
-  filterOrderByUserName: any = [];
+  filterOrder: any = []; // store the orders filter by product-name
+  filterOrderByUserName: any = []; // store the orders filter by user-name
   dtOptions: DataTables.Settings = {};
   showDiv = {
     order: true,
@@ -55,8 +56,8 @@ export class CoffeeOrderComponent implements OnInit {
     menu: false
   };
   term: string;
-  productOrderDetails: any = [];
-  userOrderDetails: any = [];
+  productOrderDetails: any = []; // store the product  details like size , price and order by user etc
+  userOrderDetails: any = []; // store each user  details like cost to pay , owed amount  , total payment , it's order.
 
   constructor(private service: AppService, private modalService: NgbModal, private sortBy: SortByPipe) { }
 
@@ -189,6 +190,9 @@ export class CoffeeOrderComponent implements OnInit {
 
   }
 
+  /**
+   * This function will calculate the total payment made by each user.
+   */
   getTotalPaymentMadeByUser() {
     let paymentAmount = [];
     paymentAmount = this.groupBy(this.paymentMadeByUser, 'user');
@@ -212,6 +216,9 @@ export class CoffeeOrderComponent implements OnInit {
 
   }
 
+  /**
+   * This function will store the user's order data.
+   */
   getUsersOrders() {
 
     let usersList = [];
@@ -261,7 +268,7 @@ export class CoffeeOrderComponent implements OnInit {
   }
 
   /**
-   * This function will store each product order details
+   * This function store each product order details
    */
   getEachProductDetails() {
 
@@ -313,12 +320,9 @@ export class CoffeeOrderComponent implements OnInit {
 
   }
 
-
-
-
   /*
   *
-  * This function will calculate each user order details
+  * This function will store  each user order details
   */
   getEachUserDetails() {
 
@@ -383,7 +387,7 @@ export class CoffeeOrderComponent implements OnInit {
   }
 
   /*
-  *This function filter order array by drink name to show details on modal @param data
+  *This function filter order array  by drink name to show details on modal @param data
   */
   filterOrdersByDrinkName(data) {
     this.productOrderDetails.forEach((element1, index) => {
@@ -399,7 +403,7 @@ export class CoffeeOrderComponent implements OnInit {
   }
 
   /**
-   * This function filter order array by user name to show details on modal @param data @param data
+   * This function filter order  array by user name to show details on modal @param data @param data
    */
   filterOrdersByUserName(data) {
     this.userOrderDetails.forEach(element => {
@@ -446,7 +450,7 @@ export class CoffeeOrderComponent implements OnInit {
   }
 
   /**
-   * This functiona close the respective modal @param reason @returns
+   * This function use to  close the respective modal @param reason @returns
    */
   private getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {

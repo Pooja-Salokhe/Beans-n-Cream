@@ -12,6 +12,7 @@ import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { FormsModule } from '@angular/forms';
 import { CoffeeOrderComponent } from './coffee-order.component';
+import { DataTablesModule } from 'angular-datatables';
 
 describe('CoffeeOrderComponent', () => {
   let component: CoffeeOrderComponent;
@@ -28,7 +29,7 @@ describe('CoffeeOrderComponent', () => {
     });
     const sortByPipeStub = () => ({});
     TestBed.configureTestingModule({
-      imports: [FormsModule],
+      imports: [FormsModule, DataTablesModule],
       schemas: [NO_ERRORS_SCHEMA],
       declarations: [CoffeeOrderComponent],
       providers: [
